@@ -59,4 +59,18 @@ def bubble_sort(data):
     return data
 
 unsorted_data = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -100, 121221]
-print(bubble_sort(unsorted_data))
+# print(bubble_sort(unsorted_data))
+
+
+def insertion_sort(data):
+    for i in range(0, len(data)-1):
+        current_data = data[i]
+        position = i
+
+        while position > 0 and data[position-1] > current_data:
+            data[position] = data[position-1]
+            position -= 1
+        data[position] = current_data
+    return data
+
+print(insertion_sort(unsorted_data))
