@@ -39,18 +39,24 @@ def recur_binary_search(data, item, start, end):
 
 
 sorted_data = [1, 4, 6, 8, 10, 12, 14, 16, 18]
+
 # print(recur_binary_search(sorted_data, 16, 0, len(sorted_data)-1))
 # print(binary_search(sorted_data, 16))
 
 
+#   O(n^2) time complexity
+#   optimised with n, to reduce needless passes over sorted part of data
 def bubble_sort(data):
-    for i in range(0, len(data)-1):
-        for j in range(0, len(data)-1):
+    swapped = False
+    n = 0
+    while swapped == False and n < len(data)-1:
+        for j in range(0, len(data)-1-n):
             if data[j] > data[j+1]:
                 temp = data[j]
                 data[j] = data[j+1]
                 data[j+1] = temp
+        n += 1
     return data
 
-unsorted_data = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+unsorted_data = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -100, 121221]
 print(bubble_sort(unsorted_data))
