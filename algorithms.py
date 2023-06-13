@@ -47,19 +47,21 @@ sorted_data = [1, 4, 6, 8, 10, 12, 14, 16, 18]
 #   O(n^2) time complexity
 #   optimised with n, to reduce needless passes over sorted part of data
 def bubble_sort(data):
-    swapped = False
+    swapped = True
     n = 0
-    while swapped == False and n < len(data)-1:
+    while swapped == True and n < len(data)-1:
+        swapped = False
         for j in range(0, len(data)-1-n):
             if data[j] > data[j+1]:
                 temp = data[j]
                 data[j] = data[j+1]
                 data[j+1] = temp
+                swapped = True
         n += 1
     return data
 
 unsorted_data = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -100, 121221]
-# print(bubble_sort(unsorted_data))
+print(bubble_sort(unsorted_data))
 
 
 def insertion_sort(data):
@@ -73,4 +75,4 @@ def insertion_sort(data):
         data[position] = current_data
     return data
 
-print(insertion_sort(unsorted_data))
+# print(insertion_sort(unsorted_data))
