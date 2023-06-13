@@ -39,5 +39,18 @@ def recur_binary_search(data, item, start, end):
 
 
 sorted_data = [1, 4, 6, 8, 10, 12, 14, 16, 18]
-print(recur_binary_search(sorted_data, 16, 0, len(sorted_data)-1))
-print(binary_search(sorted_data, 16))
+# print(recur_binary_search(sorted_data, 16, 0, len(sorted_data)-1))
+# print(binary_search(sorted_data, 16))
+
+
+def bubble_sort(data):
+    for i in range(0, len(data)-1):
+        for j in range(0, len(data)-1):
+            if data[j] > data[j+1]:
+                temp = data[j]
+                data[j] = data[j+1]
+                data[j+1] = temp
+    return data
+
+unsorted_data = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1]
+print(bubble_sort(unsorted_data))
