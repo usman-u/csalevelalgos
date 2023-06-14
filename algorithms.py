@@ -1,4 +1,6 @@
 
+sorted_data = [1, 4, 6, 8, 10, 12, 14, 16, 18]
+unsorted_data = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -100, 121221]
 
 
 def binary_search(data, item):
@@ -38,7 +40,6 @@ def recur_binary_search(data, item, start, end):
     return mid
 
 
-sorted_data = [1, 4, 6, 8, 10, 12, 14, 16, 18]
 
 # print(recur_binary_search(sorted_data, 16, 0, len(sorted_data)-1))
 # print(binary_search(sorted_data, 16))
@@ -60,8 +61,7 @@ def bubble_sort(data):
         n += 1
     return data
 
-unsorted_data = [10, 9, 8, 7, 6, 5, 4, 3, 2, 1, -100, 121221]
-print(bubble_sort(unsorted_data))
+# print(bubble_sort(unsorted_data))
 
 
 def insertion_sort(data):
@@ -76,3 +76,48 @@ def insertion_sort(data):
     return data
 
 # print(insertion_sort(unsorted_data))
+
+def quick_sort(data, start, end):
+    # Base case; where list size is 1 or greater (where start >= end)
+    if start <= end:
+        # Split = the index of the pivot of the partitioned data
+        split = partition(data, start, end)
+        
+        # Recursively call QS on the left and right of the list
+        # split index -/+ 1, since not including the previous pivot
+        quick_sort(data, start, split-1)
+        quick_sort(data, split+1, end)
+    return data
+
+# Partitions the data, such that all values left of the pivot are smaller than the pivot value, and vice versa
+# Returns pivot index
+def partition(data, start, end):
+    pivotValue = data[start]
+    left = start + 1
+    right = end
+
+    while left <= right:
+        
+        while left <= right and data[left] <= pivotValue:
+            left += 1
+
+        while left <= right and data[right] >= pivotValue:
+            right -= 1
+            
+        # If above criteria met (pointers haven't crossed over)
+        # Swap the values are the right and left pointers
+        if left <= right:
+            tmp = data[left]
+            data[left] = data[right]
+            data[right] = tmp
+    
+    # After the pointers have crossed over (as left is not less than right)
+    # Swap the pivot value with the value at the right pointer
+    # Where start = pivot
+    data[start] = data[right]
+    data[right] = pivotValue
+    
+    # Reuturn pivot index
+    return right
+
+print(quick_sort(unsorted_data, 0, len(unsorted_data)-1))
